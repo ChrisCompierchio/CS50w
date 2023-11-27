@@ -1,0 +1,80 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <body>
+        <div>
+            <h2> {{ listing.title }} </h2>
+            <br/>
+            <br/>
+            <label>User: </label>
+            <a name="seller">{{ listing.user }}</a>
+            <br/>
+            <br/>
+            <label>Description: </label>
+            <p style="text-wrap: wrap;">{{ listing.description }}</p>
+            <br/>
+            <br/>
+            <label>Starting Bid: </label>
+            {{ listing.starting_bid }}
+            <br/>
+            <br/>
+            <img src="{{ listing.image }}" style="height:150px; width:150px;">
+            <br/>
+            <br/>
+            <label>Category: </label>
+            {{ listing.category }}
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            ------------------------------------------------------------------------------------------------
+            {% if user.is_authenticated %}
+            <br>
+            {% if listing.active %}
+                <label>Place Bid:</label>
+                <p>{{ bid_message }}</p>
+                <form action = "{% url 'listing_page' id=listing.id %}" method = "POST" style="text-align: center">
+                    {% csrf_token %}
+                    <input type="number" name="bid" placeholder="Enter Bid" min="{{ listing.starting_bid }}" step="0.01">
+                    <input type="submit" name="place_bid" value="Place Bid">
+
+                    <p>{{ wl_message }}</p>
+                    {% if not on_watchlist %}
+                        <input type="submit" name="add" value="Add To Watchlist">
+                    {% else %}
+                        <input type="submit" name="add" value="Remove From Watchlist">
+                    {% endif %}
+                    <br/>
+                    {% if close %}
+                        <input type="submit" name="close" value="Close Auction">
+                    {% endif %}
+                    <br/>
+                    <textarea type = "text" placeholder = "Add Comment" name = "comment" style="height:200px; width:350px"></textarea>
+                    <br/>
+                    <input type="submit" name="writer" value="Submit Comment">
+                    <br/>
+                    <br/>
+            {% else %}
+                    <p>{{ win_message }}</p>
+                    <br/>
+                    <br/>
+                </form>
+            {% endif %}
+            {% endif %}
+            ------------------------------------------------------------------------------------------------
+            <br/>
+            <h2>Comments:</h2>
+            <br/>
+            <br/>
+            {% if listing.active %}
+                {% for comment in comments %}
+                    <div>
+                        <TEXT-TAG style="font-size:25px;">{{comment.user}}:</TEXT-TAG>
+                        {{ comment.text }}
+                    </div>
+                    <br/>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </body>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+        <style>
+            .q{
+                height:45px;
+                width:500px;
+                font-size:16px;
+            }
+            .search{
+                background-color: grey;
+                padding: 10px 20px;
+                margin:5px;
+                border-radius:4px;
+            }
+            div{
+                text-align: center;
+                margin: 0 auto;
+                transform: translateY(200px);
+            }
+            header{
+                text-align: right;
+            }
+        </style>
+    </head>
+    <header>
+        <a href="image.html">Image Search</a>
+        <a href="advanced.html">Advanced Search</a>
+    </header>
+    <body>
+        <div>
+            <img alt="Google" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+        </div>
+        <form action="https://www.google.com/search">
+            <div>
+                <input type="text" name="q" class="q">
+            </div>
+            <div>
+                <input type="submit" value="Google Search" class="search">
+                <input type="submit" value="I'm Feeling Lucky" class="search" name="btnI">
+            </div>
+        </form>
+    </body>
+</html>

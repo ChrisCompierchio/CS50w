@@ -1,0 +1,259 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <div class="blue-note" id="blue" draggable="true" style="background-color: #1CFFF0;" onmousedown="selected('blue')">
+
+        </div>
+        <div class="green-note" id="green" draggable="true" style="background-color: #00FF00;" onmousedown="selected('green')">
+
+        </div>
+        <div class="pink-note" id="pink" draggable="true" style="background-color: #FF05C5;" onmousedown="selected('pink')">
+
+        </div>
+        <div class="orange-note" id="orange" draggable="true" style="background-color: #FFBB00;" onmousedown="selected('orange')">
+
+        </div>
+        <div class="white-note" id="white" draggable="true" style="background-color: #FFFFFF;" onmousedown="selected('white')">
+
+        </div>
+        <div class="yellow-note" id="yellow" draggable="true" style="background-color: #F0FF24;" onmousedown="selected('yellow')">
+
+        </div>
+
+        <div class="board-container">
+            <img class="bg-img2" alt="Bulletin_Board" src="{% static 'img/bulletin.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    {% if note1.color %}
+                        <div class="col-sm full" id="a1" style="background-color: {{ note1.color }}" onclick="deleteOldItem(1)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note1.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b1">
+
+                        </div>
+                    {% endif %}
+                    {% if note2.color %}
+                        <div class="col-sm full" id="a2" style="background-color: {{ note2.color }}" onclick="deleteOldItem(2)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note2.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b2">
+
+                        </div>
+                    {% endif %}
+                    {% if note3.color %}
+                        <div class="col-sm full" id="a3" style="background-color: {{ note3.color }}" onclick="deleteOldItem(3)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note3.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b3">
+
+                        </div>
+                    {% endif %}
+                    {% if note4.color %}
+                        <div class="col-sm full" id="a4" style="background-color: {{ note4.color }}" onclick="deleteOldItem(4)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note4.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b4">
+
+                        </div>
+                    {% endif %}
+                    {% if note5.color %}
+                        <div class="col-sm full" id="a5" style="background-color: {{ note5.color }}" onclick="deleteOldItem(5)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note5.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b5">
+
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    {% if note6.color %}
+                        <div class="col-sm full" id="a6" style="background-color: {{ note6.color }}" onclick="deleteOldItem(6)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note6.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b6">
+
+                        </div>
+                    {% endif %}
+                    {% if note7.color %}
+                        <div class="col-sm full" id="a7" style="background-color: {{ note7.color }}" onclick="deleteOldItem(7)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note7.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b7">
+
+                        </div>
+                    {% endif %}
+                    {% if note8.color %}
+                        <div class="col-sm full" id="a8" style="background-color: {{ note8.color }}" onclick="deleteOldItem(8)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note8.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b8">
+
+                        </div>
+                    {% endif %}
+                    {% if note9.color %}
+                        <div class="col-sm full" id="a9" style="background-color: {{ note9.color }}" onclick="deleteOldItem(9)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note9.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b9">
+
+                        </div>
+                    {% endif %}
+                    {% if note10.color %}
+                        <div class="col-sm full" id="a10" style="background-color: {{ note10.color }}" onclick="deleteOldItem(10)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note10.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b10">
+
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    {% if note11.color %}
+                        <div class="col-sm full" id="a11" style="background-color: {{ note11.color }}" onclick="deleteOldItem(11)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note11.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b11">
+
+                        </div>
+                    {% endif %}
+                    {% if note12.color %}
+                        <div class="col-sm full" id="a12" style="background-color: {{ note12.color }}" onclick="deleteOldItem(12)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note12.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b12">
+
+                        </div>
+                    {% endif %}
+                    {% if note13.color %}
+                        <div class="col-sm full" id="a13" style="background-color: {{ note13.color }}" onclick="deleteOldItem(13)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note13.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b13">
+
+                        </div>
+                    {% endif %}
+                    {% if note14.color %}
+                        <div class="col-sm full" id="a14" style="background-color: {{ note14.color }}" onclick="deleteOldItem(14)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note14.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b14">
+
+                        </div>
+                    {% endif %}
+                    {% if note15.color %}
+                        <div class="col-sm full" id="a15" style="background-color: {{ note15.color }}" onclick="deleteOldItem(15)">
+                            <div class="pin-div">
+                                <img src="{% static 'img/pin.png' %}" class="pin" id="pin">
+                            </div>
+                            <div class="new-text">
+                                {{ note15.text }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="col-sm empty" id="b15">
+
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    {% else %}
+        <div class="board-container">
+            <img class="bg-img2" alt="Bulletin_Board" src="{% static 'img/bulletin.jpg' %}">
+            <div class="welcome-text">
+                Login or Register <br/> To Get Started!
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'script.js' %}"></script>
+{% endblock %}

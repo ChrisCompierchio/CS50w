@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Categories</h2>
+    <br/>
+    <br/>
+    <form action = "{% url 'category'%}" method = "POST" style="text-align: center">
+    {% csrf_token %}
+        <input type="submit", name="fashion", value = Fashion>
+        <br/>
+        <input type="submit", name="clothing", value = Clothing>
+        <br/>
+        <input type="submit", name="electronics", value = Electronics>
+        <br/>
+        <input type="submit", name="home", value = Home>
+        <br/>
+    </form>
+{% endblock %}

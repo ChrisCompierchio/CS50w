@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>{{ category }}</h2>
+    <br/>
+    <br/>
+    {% for listing in listings %}
+        <div>
+            <form action = "{% url 'listing_page' id=listing.id %}" method = "POST" style="text-align: center">
+                {% csrf_token %}
+                <label>Title: </label>
+                <input type="submit" name="title" value="{{ listing.title }}">
+                <br/>
+                <br/>
+                <label>User: </label>
+                <label value="{{ listing.user }}" name="seller">{{ listing.user }}</label>
+                <br/>
+                <br/>
+                <label>Description: </label>
+                <p style="text-wrap: wrap;" name="description">{{ listing.description }}</p>
+                <br/>
+                <br/>
+                <label>Starting Bid: </label>
+                <p name="starting_bid">{{ listing.starting_bid }}</p>
+                <br/>
+                <br/>
+                <img src="{{ listing.image }}" style="height:150px; width:150px;" name="image">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+            </form>
+            ------------------------------------------------------------------------------------------------
+        </div>
+    {% endfor %}
+{% endblock %}

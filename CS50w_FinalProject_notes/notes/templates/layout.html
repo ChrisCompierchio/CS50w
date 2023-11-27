@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Notes{% endblock %}</title>
+        <meta name="viewport" content="initial-scale=1 width=device-width">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'styles.css' %}" rel="stylesheet">
+        {% block script %}
+        {% endblock %}
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+
+            <divstyle="text-align:center;">
+                <ul class="navbar-nav mr-auto" style="text-align:center;">
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size:25px;" href="{% url 'new_logout' %}">Log Out</a>
+                    </li>
+                    <li class="nav-item" style="margin-left:200px; margin-right:200px;">
+                        <a class="nav-link" href="{% url 'index' %}"><strong style="font-size:50px;">{{ user.username }}'s Notes</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-size:15px;">Made by <br/> Chris Compierchio</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% else %}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div style="text-align:center;">
+                <ul class="navbar-nav mr-auto" style="text-align:center;">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'new_login' %}">Log In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% endif %}
+        <div>
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
