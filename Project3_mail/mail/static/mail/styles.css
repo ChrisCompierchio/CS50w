@@ -1,0 +1,21 @@
+textarea {
+    min-height: 400px;
+}
+.single {
+    border: solid;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 20px;
+    text-align: left;
+    padding: 20px;
+    background-color: white;
+}
+.single-read{
+    border: solid;
+    border-color: black;
+    border-width: 5px;
+    border-radius: 20px;
+    text-align: left;
+    padding: 20px;
+    background-color: gray;
+}

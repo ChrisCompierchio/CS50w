@@ -1,0 +1,51 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% for post in page_obj %}
+        <div style="border-style: solid; margin: 10px; padding: 20px;" id="{{ post.id }}" class="postframe" name="post-div">
+            <a href="{% url 'profile' clickedUser=post.author %}"><h2 id="author">{{ post.author }}</h2></a>
+            <br/>
+            <br/>
+            <p id="post-textt" class="{{ post.id }}">{{ post.text }}</p>
+            <br/>
+            <p id="time">{{ post.timestamp }}</p>
+            <br/>
+            <p id="likes{{ post.id }}">Likes: {{ post.likes }}</p>
+            <br/>
+            <br/>
+            {% if user.is_authenticated %}
+                {% if user == post.author %}
+                    <button name="edit" id="edit" class="{{ post.id }}">Edit</button>
+                {% else %}
+                    {% if post.id in likedPosts %}
+                        <button name="unlike" id="like-button{{ post.id }}" class="{{ post.id }}" onclick="likeControl({{post.id}}, {{likedPosts}})">Unlike</button>
+                    {% else %}
+                        <button name="like" id="like-button{{ post.id }}" class="{{ post.id }}" onclick="likeControl({{post.id}},{{likedPosts}})">Like</button>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
+{% endblock %}
